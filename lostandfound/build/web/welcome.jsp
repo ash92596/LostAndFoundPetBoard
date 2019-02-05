@@ -5,8 +5,7 @@
 --%>
 <%@page import ="org.mypackage.login.loginservlet" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="org.mypackage.login.UserBean" 
-        language="java"%>
+<%@page import="org.mypackage.login.UserBean" %>
 
 
 <!DOCTYPE html>
@@ -17,7 +16,10 @@
     </head>
     
                   
-     <%UserBean currentUser = (UserBean) session.getAttribute("SessionUser");%>
+     <%UserBean currentUser = (UserBean) session.getAttribute("SessionUser");
+    
+     
+     %>
         <h1>Welcome <%= currentUser.getUsername()+" "+currentUser.getZipcode() %> </h1>
          
     

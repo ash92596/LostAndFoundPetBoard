@@ -14,7 +14,7 @@ import java.sql.*;
 public class UserDAO {
     
      static ResultSet rs = null;  
-    
+     static Connection conn=null;
      public static UserBean login(UserBean bean) {
 	
          //preparing some objects for connection 
@@ -37,7 +37,7 @@ public class UserDAO {
          final String db_username= "app";
          final String db_password= "app";
    
-        Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
+         conn = DriverManager.getConnection(db_url, db_username, db_password);
           
           
          stmt=conn.createStatement();
@@ -70,6 +70,34 @@ public class UserDAO {
       } 
          
          
+      //some exception handling
+      finally 
+      {
+         if (rs != null)	{
+            try {
+               rs.close();
+            } catch (Exception e) {}
+               rs = null;
+            }
+	
+         if (stmt != null) {
+            try {
+               stmt.close();
+            } catch (Exception e) {}
+               stmt = null;
+            }
+	
+         if (conn!= null) {
+            try {
+               conn.close();
+            } catch (Exception e) {
+            }
+
+            conn = null;
+         }
+      }
+          
+          
               
          
          return bean;
