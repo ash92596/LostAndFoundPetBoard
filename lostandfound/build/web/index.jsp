@@ -6,26 +6,70 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en" >
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Account</title>
+        <title>Sign Up Form</title>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+        <link rel="stylesheet" href="style.css"> 
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <script  src="index.js"></script>
     </head>
+
     <body>
-        <!--This jsp takes user input and sends to account servlet  -->
-        
-        <h1>Create Account</h1>
-        <form name="User Info" action="accountservlet" method="GET">
-            UserID:
-            <input type="text" name="userid" value="" />
-            Email:
-            <input type="text" name="email" value="" />
-            Password:
-            <input type="password" name="password" value="" />
-            Zip:
-             <input type="text" name="zipcode" value="" />
-            <input type="submit" value="OK" />
-            
-        </form>
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="title">
+                        <h1>Lost and Found Pet Board</h1>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="form">
+
+                            <!--sign up screen-->
+                            <div class="input-container sign-up">
+                                <div class="avatar-wrapper">	
+                                    <img src="https://s3.amazonaws.com/bucketdrum/Facebook_UI-07-512.png" class="avatar"/>
+                                </div>
+                                <h2>sign up</h2>
+                                <p>Its free and only takes a minute!</p>
+                                <form name="User Info" action="accountservlet" method="GET">
+                                    <input type="text" placeholder="User ID" name="userid" value="" />
+                                    <input type="text" placeholder="Email" name="email" value="" />
+                                    <input type="password" placeholder="Password" name="password" value="" />
+                                    <input type="text" placeholder="Zip Code" name="zipcode" value="" />
+                                    <button class="btn submit-btn" value="OK" type="submit" onclick="onSubmitBtnClick()">SUBMIT</button>
+                                </form>
+                            </div>
+
+                            <!--login screen-->
+                            <div class="input-container login">
+                                <div class="avatar-wrapper">	
+                                    <img src="https://s3.amazonaws.com/bucketdrum/Facebook_UI-07-512.png" class="avatar"/>
+                                </div>
+                                <h2>login</h2>
+                                <p>Welcome back!</p>
+                                <form name="login" action="loginservlet">
+                                    <input type="text" placeholder="User ID" name="userid" value="" />
+                                    <input type="password" placeholder="Password" name="password" value="" />
+                                    <button class="btn submit-btn" type="submit" onclick="onSubmitBtnClick()">SUBMIT</button>
+                                </form>
+                            </div>
+
+                            <!--login and sign up buttons-->
+                            <div class="button-group">
+                                <button class="btn login-btn" type="submit" onclick="onLoginBtnClick()">LOGIN</button>
+                                <button class="btn signup-btn" type="submit" onclick="onSignupBtnClick()">SIGN UP</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
+
 </html>

@@ -1,0 +1,7 @@
+under services in netbeans, inside of database right click tables, excecute command, paste statement below, hit run statement button on top tab.
+
+
+
+
+
+CREATE TABLE LOSTPETS (USERID CHAR(30), SPECIES CHAR(30), DESCRIPTION CHAR(80), PHOTO BLOB, CONTACT CHAR(80), STATUS CHAR(20), LAT DOUBLE, LNG DOUBLE);
