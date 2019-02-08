@@ -22,11 +22,13 @@
     
                   
      <%UserBean currentUser = (UserBean) session.getAttribute("SessionUser");%>
+
      <form action="postlost.jsp" method="POST">
         <h1>Welcome <%= currentUser.getUsername()+"!"%> </h1>
         <input type="submit" value="post" name="post" />
      </form>    
     
+
      
      <body>
         <div class="wrapper">
