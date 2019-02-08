@@ -53,24 +53,31 @@ public class accountservlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+String myvar =
+        "<div class=\"wrapper\">"+
+            "<div class=\"container\">"+
+                "<div class=\"col-md-6 col-md-offset-3\">"+
+                    "<div class=\"form\">"+
+                            "<div class=\"input-container sign-up a\">"+
+                                "<h2>Account Created!</h2>"+
+                                "<p>Click on the button below to go to the Home Page.</p>"+      
+                                "<a href=\"welcome.jsp\">"+ "<button class=\"homepage-btn\" value=\"OK\" type=\"submit\" >Home Page</button>" + "</a>" +               
+                            "</div>  " +
+                    "</div>"+
+                "</div>"+
+            "</div>"+
+        "</div>";
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Welcome</title>");            
+            out.println("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
+            out.println("<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>");
+            out.println("<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>");
+            out.println("<link rel=\"stylesheet\" href=\"indexstyle.css\">");
+            out.println("<title>Accout Created Screen</title>");   
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Sign Up: " + result + "</h1>");
-            
-            
-            out.println("<input type=\"button\" value=\"Home\" name=\"Home\"\n" +
-                           "onclick=\"openPage('welcome.jsp')\"/>");
-            out.println("<script type=\"text/javascript\">\n" +
-                        " function openPage(pageURL)\n" +
-                        " {\n" +
-                        " window.location.href = pageURL;\n" +
-                        " }\n" +
-                        "</script>");
-            
+            out.println(myvar);
             
             out.println("</body>");
             out.println("</html>");
@@ -163,12 +170,5 @@ records="Failed";
 }
 return records;
 }
-    
-    
-    
-    
-    
-    
-    
     
 }
