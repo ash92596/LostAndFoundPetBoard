@@ -7,7 +7,7 @@
 
 <%@ page import="java.sql.*"%>
 <%@ page import="java.io.*"%>
-
+<%@page import ="org.mypackage.login.expandlostservlet" %>
        
          <%
        Blob image = null;
@@ -20,13 +20,13 @@
 
       ResultSet rs = null;
        
-       
+       //String user = session.getAttribute("SessionUser");
        
        try {
 			//Class.forName(" org.apache.derby.jdbc.ClientDriver.class");
 			con = DriverManager.getConnection("jdbc:derby://localhost:1527/users","app","app");
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select photo from lostpets where  userid = 'Connor'");
+			rs = stmt.executeQuery("select photo from lostpets where  userid = '"+session.getAttribute("image")+"'");
 			if (rs.next()) {
 				image = rs.getBlob(1);
 				imgData = image.getBytes(1,(int)image.length());

@@ -51,7 +51,7 @@ public class lostpetservlet extends HttpServlet {
         String status = request.getParameter("status");
         double lat = Double.parseDouble(request.getParameter("latposition"));
         double lng = Double.parseDouble(request.getParameter("lngposition"));
-                
+        String address = request.getParameter("area");
                 
                 
         InputStream inputStream = null; // input stream of the upload file
@@ -65,7 +65,7 @@ public class lostpetservlet extends HttpServlet {
         }
         
         
-        Connection conn = null; // connection to the database
+        Connection conn; // connection to the database
         String message = null;  // message will be sent back to client
         
         
@@ -73,7 +73,7 @@ public class lostpetservlet extends HttpServlet {
         
          conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
         
-         String sql = "INSERT INTO lostpets (userid, species, description, photo, contact, status, lat, lng) values (?, ?, ?, ?, ?, ?, ?, ?)";
+         String sql = "INSERT INTO lostpets (userid, species, description, photo, contact, status, lat, lng, address) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
          PreparedStatement statement = conn.prepareStatement(sql);
          statement.setString(1, user);
          statement.setString(2, species);
@@ -82,7 +82,7 @@ public class lostpetservlet extends HttpServlet {
          statement.setString(6, status);
          statement.setDouble(7, lat);
          statement.setDouble(8, lng);
-         
+         statement.setString(9, address);
          
          if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column

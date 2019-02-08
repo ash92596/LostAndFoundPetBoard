@@ -34,39 +34,48 @@ public class lostpetBean {
         // String db_url= "jdbc:derby://localhost:1527/users";
         // String db_username= "app";
       //  String db_password= "app";
+    static  Connection conn = null;
+    static  ResultSet rs = null;
     
-    public static lostpet lpDAO(lostpet id) throws SQLException, IOException{
+    public static lostpet lpDAO(lostpet id){
         
-        lostpet lostpet =null;
+        //lostpet lostpet =null;
         String db_url= "jdbc:derby://localhost:1527/users";
          String db_username= "app";
          String db_password= "app";
         
+        String userid = id.getUserid();
+        Statement ps = null;
+        //Connection conn = null;
+       // ResultSet rs = null;
         
-        PreparedStatement ps = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String username="Connor";
         String sql = "SELECT * FROM lostpets WHERE userid ='"
-                        + username
+                        + userid
                         + "'" ;
         try{
         
          
    
          conn = DriverManager.getConnection(db_url, db_username, db_password);
-            
-         ps= conn.prepareStatement(sql); 
+         ps=conn.createStatement();
+         rs = ps.executeQuery(sql);   
+         //ps= conn.prepareStatement(sql); 
          //ps.setString(1, id);
-         rs= ps.executeQuery(); 
+         //rs= ps.executeQuery(); 
          
         if (rs.next()) {
                // lostpet = new lostpet();
                 String user = rs.getString("userid");
+                String spec = rs.getString("species");
                 String descr = rs.getString("description");
-                Blob blob = rs.getBlob("photo");
+                String contact = rs.getString("contact");
+                String status = rs.getString("status");
+                double lat = rs.getDouble("lat");
+                double lng = rs.getDouble("lng");
+                String ad = rs.getString("address");
+               // Blob blob = rs.getBlob("photo");
                 
-                 InputStream inputStream = blob.getBinaryStream();
+                /* InputStream inputStream = blob.getBinaryStream();
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
                 int bytesRead = -1;
@@ -81,15 +90,19 @@ public class lostpetBean {
                  
                 inputStream.close();
                 outputStream.close();
-                
+                */
                 id.setUserid(user);
+                id.setSpecies(spec);
                 id.setDescription(descr);
-                id.setPhoto(base64Image);
+                id.setContact(contact);
+                id.setStatus(status);
+                id.setLat(lat);
+                id.setLng(lng);
+                id.setAddress(ad);
         }
         }
-        catch(SQLException | IOException ex){
-        ex.printStackTrace();
-            throw ex;
+        catch(Exception ex){
+       
                 }
         finally
     {
@@ -105,7 +118,7 @@ public class lostpetBean {
   }   
         
         
-    return lostpet;
+    return id;
     }
     
 }

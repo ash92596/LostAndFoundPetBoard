@@ -38,10 +38,10 @@
                                 <h2>sign up</h2>
                                 <p>Its free and only takes a minute!</p>
                                 <form name="User Info" action="accountservlet" method="GET">
-                                    <input type="text" placeholder="User ID" name="userid" value="" />
-                                    <input type="text" placeholder="Email" name="email" value="" />
-                                    <input type="password" placeholder="Password" name="password" value="" />
-                                    <input type="text" placeholder="Zip Code" name="zipcode" value="" />
+                                    <input type="text" placeholder="User ID" name="userid" value="" required/>
+                                    <input type="text" placeholder="Email" name="email" value="" required/>
+                                    <input type="password" placeholder="Password" name="password" pattern="(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}" title="8 or more characters with at least one special character, letter, and number" value="" required/>
+                                    <input type="text" placeholder="Zip Code" name="zipcode" value="" required/>
                                     <button class="btn submit-btn" value="OK" type="submit" onclick="onSubmitBtnClick()">SUBMIT</button>
                                 </form>
                             </div>

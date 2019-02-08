@@ -3,7 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import org.mypackage.login.lostpetservlet;
+import org.mypackage.login.expandlostservlet;
 import org.mypackage.login.lostpet;
 import java.sql.*;
 import java.io.*;
@@ -34,7 +34,7 @@ public final class expandedlostpets_jsp extends org.apache.jasper.runtime.HttpJs
     PageContext _jspx_page_context = null;
 
     try {
-      response.setContentType("image/jpg;charset=UTF-16BE");
+      response.setContentType("text/html;charset=UTF-16BE");
       pageContext = _jspxFactory.getPageContext(this, request, response,
       			null, true, 8192, true);
       _jspx_page_context = pageContext;
@@ -45,12 +45,16 @@ public final class expandedlostpets_jsp extends org.apache.jasper.runtime.HttpJs
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+      out.write('﻿');
+      out.write('﻿');
       out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
+      out.write(" \n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
@@ -59,68 +63,37 @@ public final class expandedlostpets_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("        <title>View</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("       \n");
-      out.write("       ");
-
-       Blob image = null;
-
-       Connection con = null;
-
-      byte[ ] imgData = null ;
-
-     Statement stmt = null;
-
-      ResultSet rs = null;
-       
-       
-       
-       try {
-			//Class.forName(" org.apache.derby.jdbc.ClientDriver.class");
-			con = DriverManager.getConnection("jdbc:derby://localhost:1527/users","app","app");
-			stmt = con.createStatement();
-			rs = stmt.executeQuery("select photo from lostpets where  userid = 'Connor'");
-			if (rs.next()) {
-				image = rs.getBlob(1);
-				imgData = image.getBytes(1,(int)image.length());
-			} else {
-				out.println("Display Blob Example");
-				out.println("image not found for given id>");
-				return;
-			}
-
-       
-       
-        response.setContentType("image/jpg");
-         OutputStream o = response.getOutputStream();
-         o.write(imgData);
-         o.flush();
-         o.close();
-		} catch (Exception e) {
-			out.println("Unable To Display image");
-			out.println("Image Display Error=" + e.getMessage());
-			return;
-		} finally {
-			try {
-				rs.close();
-				stmt.close();
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-       
-       
-       
-       
-       
-       
-       
-      out.write("\n");
-      out.write("        \n");
+      out.write("        <img src=\"imagetest.jsp\" width=\"240\" height=\"300\"/>\n");
+      out.write("              \n");
       out.write("        <div align=\"center\">\n");
-      out.write("            <h2></h2>\n");
-      out.write("            <h3></h3>\n");
-      out.write("            \n");
+      out.write("             ");
+ lostpet lp = (lostpet) session.getAttribute("lostinfo"); 
+      out.write("         \n");
+      out.write("             ");
+ String area = (String)request.getSession().getAttribute("area"); 
+      out.write("\n");
+      out.write("             \n");
+      out.write("             <ul>\n");
+      out.write("             <li>");
+      out.print( lp.getUserid());
+      out.write("</li>\n");
+      out.write("             <li>");
+      out.print( lp.getSpecies());
+      out.write("</li>\n");
+      out.write("             <li>");
+      out.print( lp.getDescription());
+      out.write("</li>\n");
+      out.write("             <li>");
+      out.print( lp.getContact());
+      out.write("</li>\n");
+      out.write("             <li>");
+      out.print( lp.getStatus());
+      out.write("</li>\n");
+      out.write("             <li>");
+      out.print( lp.getAddress() );
+      out.write("</li>\n");
+      out.write("             </ul>\n");
+      out.write("             <input type=\"checkbox\" name=\"flag\" value=\"Flag\" />\n");
       out.write("        </div>\n");
       out.write("        \n");
       out.write("    </body>\n");

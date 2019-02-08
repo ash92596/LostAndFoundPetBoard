@@ -5,6 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 import java.sql.*;
 import java.io.*;
+import org.mypackage.login.expandlostservlet;
 
 public final class imagetest_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -62,13 +63,13 @@ public final class imagetest_jsp extends org.apache.jasper.runtime.HttpJspBase
 
       ResultSet rs = null;
        
-       
+       //String user = session.getAttribute("SessionUser");
        
        try {
 			//Class.forName(" org.apache.derby.jdbc.ClientDriver.class");
 			con = DriverManager.getConnection("jdbc:derby://localhost:1527/users","app","app");
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select photo from lostpets where  userid = 'Connor'");
+			rs = stmt.executeQuery("select photo from lostpets where  userid = '"+session.getAttribute("SessionUser")+"'");
 			if (rs.next()) {
 				image = rs.getBlob(1);
 				imgData = image.getBytes(1,(int)image.length());
@@ -80,7 +81,7 @@ public final class imagetest_jsp extends org.apache.jasper.runtime.HttpJspBase
 
        
        
-        response.setContentType("image/gif");
+        response.setContentType("image/jpg");
          OutputStream o = response.getOutputStream();
          o.write(imgData);
          o.flush();

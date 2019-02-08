@@ -7,22 +7,19 @@ package org.mypackage.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Connor
  */
-@WebServlet(name = "accountservlet", urlPatterns = {"/accountservlet"})
-public class accountservlet extends HttpServlet {
-     
+@WebServlet(name = "expandlostservlet", urlPatterns = {"/expandlostservlet"})
+public class expandlostservlet extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,50 +29,42 @@ public class accountservlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
-    
-    //Servlet saves data in to database
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //Store user input from index.jsp into variables
-        String user = request.getParameter("userid");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String zipcode = request.getParameter("zipcode");
+        lostpet id= new lostpet();
         
-       
+        String user = request.getParameter("user");
         
-       String result =addrecord(user, email, password, zipcode);
-                                                     
-                
+        id.setUserid(user);
+        id = lostpetBean.lpDAO(id);
+        
+         HttpSession session = request.getSession(true);
+          
+          session.setAttribute("image",user);
+          
+          session.setAttribute("lostinfo", id);
+          response.sendRedirect("expandedlostpets.jsp");
+        
+        
+        
+        
+        
+        
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Welcome</title>");            
+            out.println("<title>Servlet expandlostservlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Sign Up: " + result + "</h1>");
-            
-            
-            out.println("<input type=\"button\" value=\"Home\" name=\"Login\"\n" +
-                           "onclick=\"openPage('index.jsp')\"/>");
-            out.println("<script type=\"text/javascript\">\n" +
-                        " function openPage(pageURL)\n" +
-                        " {\n" +
-                        " window.location.href = pageURL;\n" +
-                        " }\n" +
-                        "</script>");
-            
-            
+            out.println("<h1>Servlet expandlostservlet at " + user + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            
-           
         }
     }
 
@@ -117,58 +106,5 @@ public class accountservlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-   
-    
-    //Method used to connect and add data to database
-    public String addrecord(String user, String mail, String pass, String zip) {
-   
-    
-   String u =user;
-   String e = mail;
-   String p = pass;
-   String z = zip;
-    
-    String records;
-try{
-   final String db_url= "jdbc:derby://localhost:1527/users";
-   final String db_username= "app";
-   final String db_password= "app";
-   
-   Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
-   
-   Statement stmt = conn.createStatement();
-   
-   String sql;     
-   int rows;
-    
-    sql = "INSERT INTO accountinfo " 
-    + "(userid, email, password, zipcode) "
-    + "VALUES "
-    + "('" + u   + "',"
-    + "'" + e + "',"
-    + "'" + p + "',"        
-    + "'" + z + "')";
-    
-   rows = stmt.executeUpdate(sql);
-   conn.commit();
-   stmt.close();
-   conn.close();
-   
-   records="Success";
-}
-  
-catch(Exception ex){
-records="Failed";
-        
-}
-return records;
-}
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
