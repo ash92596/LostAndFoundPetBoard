@@ -52,7 +52,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>Sign Up Form</title>\r\n");
       out.write("        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>\r\n");
       out.write("        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"style.css\"> \r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"indexstyle.css\"> \r\n");
       out.write("        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>\r\n");
       out.write("        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>\r\n");
       out.write("        <script  src=\"index.js\"></script>\r\n");
@@ -77,10 +77,10 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <h2>sign up</h2>\r\n");
       out.write("                                <p>Its free and only takes a minute!</p>\r\n");
       out.write("                                <form name=\"User Info\" action=\"accountservlet\" method=\"GET\">\r\n");
-      out.write("                                    <input type=\"text\" placeholder=\"User ID\" name=\"userid\" value=\"\" />\r\n");
-      out.write("                                    <input type=\"text\" placeholder=\"Email\" name=\"email\" value=\"\" />\r\n");
-      out.write("                                    <input type=\"password\" placeholder=\"Password\" name=\"password\" value=\"\" />\r\n");
-      out.write("                                    <input type=\"text\" placeholder=\"Zip Code\" name=\"zipcode\" value=\"\" />\r\n");
+      out.write("                                    <input type=\"text\" placeholder=\"User ID\" name=\"userid\" value=\"\" required/>\r\n");
+      out.write("                                    <input type=\"text\" placeholder=\"Email\" name=\"email\" value=\"\" required/>\r\n");
+      out.write("                                    <input type=\"password\" placeholder=\"Password\" name=\"password\" pattern=\"(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}\" title=\"8 or more characters with at least one special character, letter, and number\" value=\"\" required/>\r\n");
+      out.write("                                    <input type=\"text\" placeholder=\"Zip Code\" name=\"zipcode\" value=\"\" required/>\r\n");
       out.write("                                    <button class=\"btn submit-btn\" value=\"OK\" type=\"submit\" onclick=\"onSubmitBtnClick()\">SUBMIT</button>\r\n");
       out.write("                                </form>\r\n");
       out.write("                            </div>\r\n");

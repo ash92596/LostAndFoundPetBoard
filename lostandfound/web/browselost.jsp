@@ -31,6 +31,7 @@
             <thead>  
             <TR>
                 <TH>User</TH>
+                <th>Satus</th>
                 <TH>Species</TH>
                 <TH>Description</TH>
                 <th>Area</th>
@@ -45,13 +46,14 @@
                     
      
             <td> <%= resultset.getString(1) %></td>
+            <td> <%= resultset.getString(6) %></td>
             <td> <%= resultset.getString(2) %></td>
             <td> <%= resultset.getString(3) %></td>
             <td> <%= resultset.getString(9) %></td>
             
             <td>                               
                 <form id="info" action="expandlostservlet" method="POST">
-    <input type="hidden" name="user" value="<%= resultset.getString(1) %>" />
+    <input type="hidden" name="address" value="<%= resultset.getString(9) %>" />
     <input id="button" type="submit" value="View" >
                    </form>                 
             </td>

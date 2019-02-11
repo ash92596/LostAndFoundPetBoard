@@ -26,7 +26,7 @@
 			//Class.forName(" org.apache.derby.jdbc.ClientDriver.class");
 			con = DriverManager.getConnection("jdbc:derby://localhost:1527/users","app","app");
 			stmt = con.createStatement();
-			rs = stmt.executeQuery("select photo from lostpets where  userid = '"+session.getAttribute("image")+"'");
+			rs = stmt.executeQuery("select photo from lostpets where  address = '"+session.getAttribute("image")+"'");
 			if (rs.next()) {
 				image = rs.getBlob(1);
 				imgData = image.getBytes(1,(int)image.length());

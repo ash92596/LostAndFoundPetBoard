@@ -75,7 +75,7 @@ String myvar =
                 "<div class=\"col-md-6 col-md-offset-3\">"+
                     "<div class=\"form\">"+
                             "<div class=\"input-container sign-up a\">"+
-                                "<h2>Account Created!</h2>"+
+                                "<h2>Account Creation:"+ result+"</h2>"+
                                 "<p>Click on the button below to go to the Home Page.</p>"+      
                                 "<a href=\"index.jsp\">"+ "<button class=\"homepage-btn\" value=\"OK\" type=\"submit\" >Login</button>" + "</a>" +               
                             "</div>  " +

@@ -12,15 +12,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.sql.*;
 /**
  *
  * @author Connor
  */
-@WebServlet(name = "expandlostservlet", urlPatterns = {"/expandlostservlet"})
-public class expandlostservlet extends HttpServlet {
-
-    /**
+@WebServlet(name = "editlostservlet", urlPatterns = {"/editlostservlet"})
+public class editlostservlet extends HttpServlet {
+    
+    
+    final String dbURL = "jdbc:derby://localhost:1527/users";
+    final String dbUser = "app";
+    final String dbPass = "app";
+                   
+        /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -32,20 +37,37 @@ public class expandlostservlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        lostpet id= new lostpet();
+        String species = request.getParameter("species");
+        String desc = request.getParameter("desc");
+        String contact = request.getParameter("contact");
+        String status = request.getParameter("status");
+        String address = request.getParameter("address");
         
-        String area = request.getParameter("address");
+        Connection conn; // connection to the database
+        String message = null;  // message will be sent back to client
         
-        id.setAddress(area);
-        id = lostpetBean.lpDAO(id);
+        try{
+        conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+        Statement stmt = conn.createStatement();
+        String sql;     
+         int rows;
         
-         HttpSession session = request.getSession(true);
-          
-          session.setAttribute("image",area);
-          
-          session.setAttribute("lostinfo", id);
-          response.sendRedirect("expandedlostpets.jsp");
+         sql = "UPDATE lostpets " +
+                   "SET species = '"+species+"', description = '"+desc+"', contact = '"+contact+"', status = '"+status+"'  WHERE address = '"+address+"'";
+         rows = stmt.executeUpdate(sql);
+        conn.commit();
+         stmt.close();
+        conn.close();
         
+        message="Success";
+        response.sendRedirect("welcome.jsp");
+        }
+        
+        
+        catch(SQLException ex){
+        
+        message="Failed";
+        }
         
         
         
@@ -59,10 +81,10 @@ public class expandlostservlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet expandlostservlet</title>");            
+            out.println("<title></title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet expandlostservlet at " + area + "</h1>");
+            out.println("<h1>Update " + message + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

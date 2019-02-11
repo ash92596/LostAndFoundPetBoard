@@ -73,25 +73,28 @@
         
         <div class="center" id="floating-panel">
             Enter Address:
-      <input id="address" type="textbox" value="">
-      <input id="submit" type="button" value="Find">
-    </div>
+      <input id="address" type="textbox" value="" size="50" />
+      <input id="submit" type="button" value="Find"/>
+       </div>
         
-        <div id="form">
-            
+        <div id="form"> 
             <table>
-                
                 <tr><td>Confirm lost pet location</td>
                     <td><input type='button' value='save' onclick='markerdata()'/></td> 
-                </tr>
-                   
-                                
-            </table>
-                                  
-                      
+                </tr>                
+            </table>        
         </div>
         
         
+         <div id="form2"> 
+            <table>
+                <tr><td>Confirm lost pet location</td>
+                    <td><input type='button' value='save' onclick='markerdata2()'/></td> 
+                </tr>                
+            </table>        
+        </div>   
+            
+            
     <script>
         
         // initializes map and stores coordinates from user placed marker
@@ -99,23 +102,29 @@
       var marker;
       var marker2;
       var infowindow;
+      var infowindow2;
       var locationlat;
       var locationlng;
       var geocoder;
       var x = document.getElementById("form");
-      
+      var y = document.getElementById("form2");
       function initMap() {
          var alabama = {lat: 32.3792, lng: -86.3077};
         map = new google.maps.Map(document.getElementById('map'), {
           center: alabama,
-          zoom: 13
+          zoom: 15
         });
         
         geocoder = new google.maps.Geocoder();
          x.style.display = "none";
+         y.style.display = "none";
         
         infowindow = new google.maps.InfoWindow({
           content: document.getElementById('form')
+        });
+        
+        infowindow2 = new google.maps.InfoWindow({
+          content: document.getElementById('form2')
         });
         
         
@@ -138,7 +147,7 @@
         });
       
       }
-        /*
+        
         function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         geocoder.geocode({'address': address}, function(results, status) {
@@ -148,9 +157,10 @@
               map: resultsMap,
               position: results[0].geometry.location
             });
+             
              google.maps.event.addListener(marker2, 'click', function() {
-               x.style.display = "block";
-               infowindow.open(map, marker2);
+               y.style.display = "block";
+               infowindow2.open(map, marker2);
             
         });
             
@@ -159,7 +169,7 @@
           }
         });
       }
-      */
+      
       
       function markerdata(){
           
@@ -173,6 +183,20 @@
            infowindow.close();
            GeoCode(lg);
       }
+      
+      function markerdata2(){
+          
+          var latlng = marker2.getPosition();
+      
+      
+           locationlat = latlng.lat();
+           locationlng= latlng.lng();
+           var lg = new google.maps.LatLng(locationlat, locationlng);
+           y.style.display = "none";
+           infowindow2.close();
+           GeoCode(lg);
+      }
+      
       
       function GeoCode(geo){ 
        geocoder.geocode({'latLng': geo}, function(results, status) {

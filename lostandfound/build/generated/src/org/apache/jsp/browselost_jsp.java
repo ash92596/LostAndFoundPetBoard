@@ -73,6 +73,7 @@ public final class browselost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            <thead>  \n");
       out.write("            <TR>\n");
       out.write("                <TH>User</TH>\n");
+      out.write("                <th>Satus</th>\n");
       out.write("                <TH>Species</TH>\n");
       out.write("                <TH>Description</TH>\n");
       out.write("                <th>Area</th>\n");
@@ -92,6 +93,9 @@ public final class browselost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print( resultset.getString(1) );
       out.write("</td>\n");
       out.write("            <td> ");
+      out.print( resultset.getString(6) );
+      out.write("</td>\n");
+      out.write("            <td> ");
       out.print( resultset.getString(2) );
       out.write("</td>\n");
       out.write("            <td> ");
@@ -103,8 +107,8 @@ public final class browselost_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("            \n");
       out.write("            <td>                               \n");
       out.write("                <form id=\"info\" action=\"expandlostservlet\" method=\"POST\">\n");
-      out.write("    <input type=\"hidden\" name=\"user\" value=\"");
-      out.print( resultset.getString(1) );
+      out.write("    <input type=\"hidden\" name=\"address\" value=\"");
+      out.print( resultset.getString(9) );
       out.write("\" />\n");
       out.write("    <input id=\"button\" type=\"submit\" value=\"View\" >\n");
       out.write("                   </form>                 \n");

@@ -44,12 +44,12 @@ public class lostpetBean {
          String db_username= "app";
          String db_password= "app";
         
-        String userid = id.getUserid();
+        String userid = id.getAddress();
         Statement ps = null;
         //Connection conn = null;
        // ResultSet rs = null;
         
-        String sql = "SELECT * FROM lostpets WHERE userid ='"
+        String sql = "SELECT * FROM lostpets WHERE address ='"
                         + userid
                         + "'" ;
         try{
