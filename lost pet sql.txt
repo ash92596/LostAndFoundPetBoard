@@ -1,7 +1,12 @@
 under services in netbeans, inside of database right click tables, excecute command, paste statement below, hit run statement button on top tab.
 
-
+com.microsoft.sqlserver.jdbc.SQLServerDriver
 
 
 
 CREATE TABLE LOSTPETS (USERID CHAR(30), SPECIES CHAR(30), DESCRIPTION CHAR(200), PHOTO BLOB, CONTACT CHAR(80), STATUS CHAR(20), LAT DOUBLE, LNG DOUBLE, ADDRESS CHAR(100));
+
+
+
+
+CREATE TABLE ACCOUNTINFO (USERID CHAR(10) NOT NULL, EMAIL CHAR(30), PASSWORD CHAR(20), ZIPCODE CHAR(10), PRIMARY KEY (USERID));
