@@ -47,18 +47,15 @@
             Species(specify breed):
             <input type="text" name="species" value="" />
             Description:
-            <textarea name="description" rows="6" cols="40">
-            </textarea>
+            <textarea name="description" rows="6" cols="40" wrap="soft"></textarea>
             Photo:
             <input type="file" name="photo" value="" />
             Contact Info(phone/email):
-            <textarea name="contact" rows="6" cols="40">
-              <%= currentUser.getEmail() %>
-            </textarea>
+            <textarea name="contact" rows="6" cols="40" wrap="soft"><%= currentUser.getEmail() %></textarea>
             Status:
             <select name="status">
-                <option value="Missing">In search of owner</option>
-               <option value="Reunited">Surrendered to shelter</option>
+                <option value="Searching for Owner">In search of owner</option>
+               <option value="Surrendered to Shelter">Surrendered to shelter</option>
             </select>
             <input type="hidden" name="latposition" id="latposition"/> <!-- hidden types are used javascript function then given a value -->
             <input type="hidden" name="lngposition" id="lngposition"/>

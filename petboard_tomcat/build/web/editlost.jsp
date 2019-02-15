@@ -15,7 +15,7 @@
         <title>Edit Posts</title>
     </head>
     <body>
-        <h1>Update your Post</h1>
+        <h1>Update your post</h1>
         
         <%UserBean currentUser = (UserBean) session.getAttribute("SessionUser");%>
         

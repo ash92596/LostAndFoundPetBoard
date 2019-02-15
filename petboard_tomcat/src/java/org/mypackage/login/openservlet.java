@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Connor
  */
-@WebServlet(name = "azureservlet", urlPatterns = {"/azureservlet"})
-public class azureservlet extends HttpServlet {
+@WebServlet(name = "openservlet", urlPatterns = {"/openservlet"})
+public class openservlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,16 +31,27 @@ public class azureservlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        
+        response.sendRedirect("index.jsp");
+        
+        
+        
+        
+        
+        
+        
+        
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet azureservlet</title>");            
+            out.println("<title>Servlet openservlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet azureservlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet openservlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

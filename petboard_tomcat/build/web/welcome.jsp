@@ -22,11 +22,15 @@
     
                   
      <%UserBean currentUser = (UserBean) session.getAttribute("SessionUser");%>
-
+     <h1>Welcome <%= currentUser.getUsername()+"!"%> </h1>
      <form action="editlost.jsp" method="POST">
-        <h1>Welcome <%= currentUser.getUsername()+"!"%> </h1>
-        <input type="submit" value="My Posts" name="post" />
-     </form>    
+     My posts:
+     <a href="editlost.jsp"><input  type="button" value="Lost Pets" class="" /></a>
+      <a href="editfound.jsp"><input  type="button" value="Found Pets" class="" /></a>
+       </form>
+     
+    
+     
     
 
      

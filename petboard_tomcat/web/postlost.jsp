@@ -48,14 +48,11 @@
             Species(specify breed):
             <input type="text" name="species" value="" />
             Description:
-            <textarea name="description" rows="6" cols="40">
-            </textarea>
+            <textarea name="description" rows="6" cols="40"></textarea>
             Photo:
             <input type="file" name="photo" value="" />
             Contact Info(phone/email):
-            <textarea name="contact" rows="6" cols="40">
-              <%= currentUser.getEmail() %>
-            </textarea>
+            <textarea name="contact" rows="6" cols="40"><%= currentUser.getEmail() %></textarea>
             Status:
             <select name="status">
                 <option value="Missing">Missing</option>

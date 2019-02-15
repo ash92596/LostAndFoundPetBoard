@@ -38,7 +38,6 @@
                 <TH>User</TH>
                 <th>Status</th>
                 <TH>Species</TH>
-                <TH>Description</TH>
                 <th>Area</th>
                 <th>Expand</th>
                 
@@ -53,7 +52,6 @@
             <td> <%= resultset.getString(1) %></td>
             <td> <%= resultset.getString(6) %></td>
             <td> <%= resultset.getString(2) %></td>
-            <td> <%= resultset.getString(3) %></td>
             <td> <%= resultset.getString(9) %></td>
             
             <td>                               
